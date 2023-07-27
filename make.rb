@@ -27,9 +27,9 @@ domain.each do |d|
     limit = sites["#{s[0]}"].length
     d.chomp!
     while index < limit do
-      plugin = sites["#{s[0]}"][index]["Plugin"]
-      version = sites["#{s[0]}"][index]["Version"]
-      if sites["#{s[0]}"][index]["Plugin"] == "#{d}"
+      plugin = sites["#{s[0]}"][index]['Plugin']
+      version = sites["#{s[0]}"][index]['Version']
+      if sites["#{s[0]}"][index]['Plugin'] == "#{d}"
         @vara << "- Plugin: #{plugin}\n" << "  Version: #{version}\n"
         @vara.uniq!
         break if index > 0

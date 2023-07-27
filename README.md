@@ -1,6 +1,6 @@
 # Socket
 
-Socket is a duo of Ansible playbooks which, together with multiple Ruby scripts, gather and save data relating to the working state of all WordPress plugins.
+Socket is an Ansible playbook which, together with multiple Ruby scripts, gathers and compiles data relating to the working state of all WordPress plugins.
 
 ![Socket](socket.webp)
 
@@ -17,7 +17,7 @@ Variables declared in a defaults/main.yaml file:
 ```console
 - name: Create a list of WordPress plugins
   hosts: chimera
-  vars_files: ../defaults/main.yaml
+  vars_files: defaults/main.yaml
   gather_facts: false
   ignore_errors: true
   tasks:
@@ -31,8 +31,8 @@ Variables declared in a defaults/main.yaml file:
         - name: Fix empty Plugin field at bcgov-opengraph
           ansible.builtin.replace:
             path: site-active-plugins.yaml
-            regexp: '  - Plugin: bcgov-opengraph\n    Version: '
-            replace: '  - Plugin: bcgov-opengraph\n    Version: 1.8.0'
+            regexp: "  - Plugin: bcgov-opengraph\n    Version: "
+            replace: "  - Plugin: bcgov-opengraph\n    Version: 1.8.0"
             mode: '0644'
 
         - name: Download the site-active-plugins.yaml file

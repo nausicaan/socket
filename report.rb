@@ -10,8 +10,8 @@ urls = (File.readlines(Dir.home + '/sources/urls.txt'))
 def collate(input)
   input.gsub! /\n/, ','
   interim = input.split(',')
-  interim.delete("name")
-  interim.delete("version")
+  interim.delete('name')
+  interim.delete('version')
   return interim
 end
 
@@ -26,9 +26,9 @@ File.open(Dir.home + "/plugins/site-#{status}-plugins.yaml", 'w') do |f|
     result = collate(plugins)
     index = 0
     while index < result.length do
-      f.puts "  - Plugin: " << "#{result[index]}"
+      f.puts '  - Plugin: ' << "#{result[index]}"
       index += 1
-      f.puts "    Version: " << "#{result[index]}"
+      f.puts '    Version: ' << "#{result[index]}"
       index += 1
     end
   end
