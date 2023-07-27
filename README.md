@@ -14,7 +14,7 @@ Variables declared in a defaults/main.yaml file:
 - TEST: WordPress test server root domain.
 - GIT: Local path to the git repository.
 
-```console
+```yaml
 - name: Create a list of WordPress plugins
   hosts: chimera
   vars_files: defaults/main.yaml
@@ -47,7 +47,7 @@ Variables declared in a defaults/main.yaml file:
 
 Navigate to the folder containing the yaml file *active.yaml* and (dependent on the location of your inventory file) run:
 
-```console
+```bash
 ansible-playbook -i ~/inventory.yaml active.yaml
 ```
 
