@@ -1,6 +1,6 @@
 ---
 - name: Create a list of WordPress plugins
-  hosts: chimera
+  hosts: "{{ node }}"
   vars_files: defaults/main.yaml
   gather_facts: false
   ignore_errors: true
@@ -10,7 +10,7 @@
       block:
         - name: Compile the per site plugin list
           ansible.builtin.script:
-            cmd: "{{ GIT }}plugins/report.rb {{ TESTPATH }} active"
+            cmd: "{{ GIT }}report.rb {{ path }} active"
 
         - name: Fix empty Plugin field at bcgov-opengraph
           ansible.builtin.replace:
@@ -31,11 +31,11 @@
       block:
         - name: Compile the domain level plugin list
           ansible.builtin.script:
-            cmd: "{{ GIT }}plugins/list.rb {{ TESTPATH }} active"
+            cmd: "{{ GIT }list.rb {{ path }} active"
 
         - name: Filter out duplicates from domain-unfiltered-active-plugins.txt
           ansible.builtin.script:
-            cmd: "{{ GIT }}plugins/uniq.rb plugins/domain-unfiltered-active-plugins.txt plugins/active-plugins-list.txt"
+            cmd: "{{ GIT }uniq.rb plugins/domain-unfiltered-active-plugins.txt plugins/active-plugins-list.txt"
 
         - name: Download the active-plugins-list file
           ansible.builtin.fetch:
@@ -49,7 +49,7 @@
       block:
         - name: Compile the domain level plugin/version list
           ansible.builtin.script:
-            cmd: "{{ GIT }}plugins/make.rb active"
+            cmd: "{{ GIT }make.rb active"
 
         - name: Download the domain-active-plugins file
           ansible.builtin.fetch:
