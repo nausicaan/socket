@@ -20,12 +20,12 @@ def collate(input)
   return interim
 end
 
-File.open(Dir.home + "/plugins/domain-unfiltered-#{status}-plugins.txt", 'w') do |f|
+File.open(Dir.home + "/plugins/domain-unfiltered-active-plugins.txt", 'w') do |f|
   writable = []
   urls.each do |line|
     line.chomp!
     line.chop!
-    plugins = %x[wp plugin list --status="#{status}" --skip-plugins=photo-gallery --skip-packages --field=name --path="#{path}" --url="#{line}" --format=csv]
+    plugins = %x[wp plugin list --status="active" --skip-plugins=photo-gallery --skip-packages --field=name --path="#{path}" --url="#{line}" --format=csv]
     plugins.strip!
     result = collate(plugins)
     append(result)

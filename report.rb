@@ -15,13 +15,13 @@ def collate(input)
   return interim
 end
 
-File.open(Dir.home + "/plugins/site-#{status}-plugins.yaml", 'w') do |f|
+File.open(Dir.home + "/plugins/site-active-plugins.yaml", 'w') do |f|
   f.puts '---'
   urls.each do |line|
     line.chomp!
     line.chop!
     f.puts "#{line}:"
-    plugins = %x[wp plugin list --status="#{status}" --skip-plugins=photo-gallery --skip-packages --fields=name,version --path="#{path}" --url="#{line}" --format=csv]
+    plugins = %x[wp plugin list --status="active" --skip-plugins=photo-gallery --skip-packages --fields=name,version --path="#{path}" --url="#{line}" --format=csv]
     plugins.strip!
     result = collate(plugins)
     index = 0
