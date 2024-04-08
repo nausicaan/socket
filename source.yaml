@@ -31,6 +31,9 @@
             regexp: "http:\/\/"
             replace: ""
 
+        - name: Sort the urls.txt file
+          ansible.builtin.command: sort -o sources/urls.txt sources/urls.txt
+
     - name: Create the blogs.csv file
       tags: duo
       block:
