@@ -48,7 +48,7 @@ Variables declared in a defaults/main.yaml file:
 Navigate to the folder containing the yaml file *active.yaml* and (dependent on the location of your inventory file) run:
 
 ``` console
-ansible-playbook -i ~/inventory.yaml active.yaml --extra-vars "path={{ TESTPATH }} node=<Server Name>"
+ansible-playbook -i ~/inventory.yaml active.yaml --extra-vars "root={{ PROD }} path={{ PRODPATH }} node=<Server Name>"
 ```
 
 ## Output
